@@ -1,5 +1,5 @@
 
-function bench(str; printing::Bool = true, kind::String = "1-solve")
+function bench(str; printing::Bool = true, kind::String = "1solve")
     !contains(pwd(), str) && cd(joinpath(Pkg.dir(), "BigTests", "data", str))
     file = "$(str)-$(kind).ini"
     t1 = @elapsed begin
@@ -21,6 +21,10 @@ warmup() = bench("1m", printing = false)
 function runall(kind = "1solve")
     info("Warmup computation")
     warmup()
+    if kind == "all"
+        bench("1m", kind = "all")
+    end
+    info("Warmup done!")
     for str in ["1m", "6m", "12m", "24m", "48m", "96m"]
         info("Benchmarking Problem of Size $str")
         bench(str, kind = kind)
