@@ -3,8 +3,6 @@ BigTests
 
 Big test problems for circuitscape.
 
-After installing the Circuitscape Python package, run:
-````
-python csverify\_large.py
-````
-
+## Requirements: 
+1. Make sure Circuitscape, PyCall, circuitscape python package are all installed. 
+2. After `using BigTests`, call `runall()`
