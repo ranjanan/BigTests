@@ -28,6 +28,10 @@ end
 
 # Python kernel
 function run_python(file; printing::Bool = true)
+    if !isfile(file)
+        s = split(file, '-')[1]
+        cd(joinpath(Pkg.dir(), "BigTests", "data", s))
+    end
     t1 = @elapsed begin
         c = cs.Compute(file, "Screen")
         r1 = c[:compute]()
@@ -38,6 +42,10 @@ end
 
 # Julia kernel
 function run_julia(file; printing::Bool = true) 
+    if !isfile(file)
+        s = split(file, '-')[1]
+        cd(joinpath(Pkg.dir(), "BigTests", "data", s))
+    end
     t2 = @elapsed r2 = compute(file)
     printing && println("Julia time = $t2")
     t2, r2
@@ -45,6 +53,10 @@ end
 
 # Julia single precision kernel
 function run_julia_single(file; printing::Bool = true)
+    if !isfile(file)
+        s = split(file, '-')[1]
+        cd(joinpath(Pkg.dir(), "BigTests", "data", s))
+    end
     t3 = @elapsed r3 = compute_single(file)
     printing && println("Julia single precision time = $t3")
     t3, r3
@@ -52,6 +64,10 @@ end
 
 # Julia cholmod time
 function run_julia_cholmod(file; printing::Bool = true)
+    if !isfile(file)
+        s = split(file, '-')[1]
+        cd(joinpath(Pkg.dir(), "BigTests", "data", s))
+    end
     t4 = @elapsed r4 = compute_cholmod(file)
     printing && println("Julia cholmod time = $t4")
     t4, r4
