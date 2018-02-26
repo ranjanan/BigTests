@@ -1,3 +1,9 @@
+# Export useful functions
+export bench, run_python,
+        run_julia, run_julia_single, 
+        run_julia_cholmod
+
+
 # Declare constants to record time
 const t_py = Float64[]
 const t_jul = Float64[]
